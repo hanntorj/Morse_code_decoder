@@ -18,14 +18,14 @@ void loop(){
   int currentTimeOff = millis();
   int timeOff = currentTimeOff - timeCountOff;
 
-  if(timeOff > 2*T && timeOff < 5*T){
+  if(timeOff > 2*T && timeOff < 8*T){
     Serial.print(3);
   }
 
-  if(timeOff > 5*T && timeOff < 10*T){
+  if(timeOff > 8*T && timeOff < 50*T){
     Serial.print(4);
   }
-  if(timeOff > 10*T) {
+  if(timeOff > 50*T) {
     Serial.print(5);
   }
   timeCountOff = currentTimeOff;
@@ -37,13 +37,13 @@ void loop(){
   int timeOn = currentTimeOn - timeCountOn;
 
   if(timeOn > wait){
-    if(timeOn <= T){
+    if(timeOn <= 1.5 * T){
       Serial.print(1);
       digitalWrite(ledPinDash, LOW);
       digitalWrite(ledPinDot, HIGH);
   }
 
-  if(timeOn > T && timeOn <= 4*T){
+  if(timeOn > 1.5*T && timeOn <= 4*T){
     Serial.print(2);
     digitalWrite(ledPinDot, LOW);
     digitalWrite(ledPinDash, HIGH);
