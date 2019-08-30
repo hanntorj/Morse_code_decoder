@@ -2,6 +2,7 @@
 involving setting up and reading from the serial port.'''
 
 import arduino_connect  # This is the key import so that you can access the serial port.
+import sys
 
 
 # Codes for the 5 signals sent to this level from the Arduino
@@ -11,6 +12,7 @@ _dash = 2
 _symbol_pause = 3
 _word_pause = 4
 _reset = 5
+_exit = 6
 
 
 # Morse Code Class
@@ -76,6 +78,7 @@ class mocoder():
 
     def process_signal(self, signal):
         '''Decodes signal from the arduino and gives instructions according to what signal it is'''
+        print(signal)
         #print(signal)
         if (signal == 1 or signal == 2):
             self.update_current_symbol(signal)
@@ -85,6 +88,8 @@ class mocoder():
             self.handle_word_end()
         elif (signal == 5):
             self.reset()
+        elif (signal == 6):
+            sys.exit()
 
     def decoding_loop(self):
         '''Decodes the signal from the arduino'''
